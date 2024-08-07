@@ -1,0 +1,227 @@
+[
+  {
+    "_id": "66b3aee05f57f225d895bb2e",
+    "index": 0,
+    "guid": "a7df70fe-552c-4c36-b5c6-2a02402724c4",
+    "isActive": true,
+    "balance": "$3,538.76",
+    "picture": "http://placehold.it/32x32",
+    "age": 26,
+    "eyeColor": "blue",
+    "name": "Holloway Huffman",
+    "gender": "male",
+    "company": "OLUCORE",
+    "email": "hollowayhuffman@olucore.com",
+    "phone": "+1 (984) 417-2613",
+    "address": "761 Thatford Avenue, Spelter, Wyoming, 5751",
+    "about": "Tempor culpa est nisi consequat minim in cillum ipsum sunt adipisicing ad duis est. Cillum elit esse velit deserunt laborum non aliqua nulla enim in excepteur cupidatat. Anim laboris pariatur in qui elit veniam cupidatat occaecat. Elit labore aliqua amet proident magna.\r\n",
+    "registered": "2016-04-03T03:01:24 +05:00",
+    "latitude": 71.94988,
+    "longitude": 33.785803,
+    "tags": [
+      "sint",
+      "ea",
+      "laboris",
+      "amet",
+      "enim",
+      "officia",
+      "voluptate"
+    ],
+    "friends": [
+      {
+        "id": 0,
+        "name": "Aurelia Russell"
+      },
+      {
+        "id": 1,
+        "name": "Baird Simpson"
+      },
+      {
+        "id": 2,
+        "name": "Hahn Harris"
+      }
+    ],
+    "greeting": "Hello, Holloway Huffman! You have 10 unread messages.",
+    "favoriteFruit": "apple"
+  },
+  {
+    "_id": "66b3aee0a616b39613e09b63",
+    "index": 1,
+    "guid": "4a9fa143-d969-4754-92c2-778a92436042",
+    "isActive": false,
+    "balance": "$1,047.21",
+    "picture": "http://placehold.it/32x32",
+    "age": 26,
+    "eyeColor": "brown",
+    "name": "Levine Rhodes",
+    "gender": "male",
+    "company": "ASSISTIX",
+    "email": "levinerhodes@assistix.com",
+    "phone": "+1 (848) 467-3695",
+    "address": "703 Kensington Street, Hachita, Wisconsin, 7465",
+    "about": "Consequat enim eu excepteur reprehenderit dolor do non dolor eu reprehenderit. Sint fugiat incididunt quis deserunt laborum officia non culpa nostrud eu Lorem deserunt. Quis ut excepteur aliquip Lorem laborum enim tempor officia non cillum sint cillum non. Est nulla consectetur mollit cillum magna dolore proident ea labore ad ad. Proident exercitation magna elit ullamco aliqua excepteur.\r\n",
+    "registered": "2022-06-24T04:57:22 +05:00",
+    "latitude": 21.114011,
+    "longitude": -11.31544,
+    "tags": [
+      "non",
+      "ad",
+      "aute",
+      "et",
+      "magna",
+      "pariatur",
+      "nulla"
+    ],
+    "friends": [
+      {
+        "id": 0,
+        "name": "Vonda Ashley"
+      },
+      {
+        "id": 1,
+        "name": "Cline Mcdowell"
+      },
+      {
+        "id": 2,
+        "name": "Bowman Tanner"
+      }
+    ],
+    "greeting": "Hello, Levine Rhodes! You have 8 unread messages.",
+    "favoriteFruit": "apple"
+  },
+  {
+    "_id": "66b3aee0cf9409980183f639",
+    "index": 2,
+    "guid": "68bb5c08-fb3a-413c-a3c9-6f38d8a26ebf",
+    "isActive": true,
+    "balance": "$1,856.85",
+    "picture": "http://placehold.it/32x32",
+    "age": 38,
+    "eyeColor": "blue",
+    "name": "Gillespie Haley",
+    "gender": "male",
+    "company": "BULLJUICE",
+    "email": "gillespiehaley@bulljuice.com",
+    "phone": "+1 (956) 436-3328",
+    "address": "554 Sackett Street, Lupton, Montana, 2431",
+    "about": "Qui eiusmod eu aute eiusmod nostrud. Occaecat culpa cillum consectetur veniam. Magna amet cupidatat voluptate sunt dolore irure sunt elit do eu dolor. Sit eu nostrud minim non veniam proident minim cillum eiusmod sunt ea irure.\r\n",
+    "registered": "2015-12-28T11:04:31 +06:00",
+    "latitude": 0.763745,
+    "longitude": 146.283275,
+    "tags": [
+      "cupidatat",
+      "qui",
+      "anim",
+      "incididunt",
+      "eiusmod",
+      "duis",
+      "nisi"
+    ],
+    "friends": [
+      {
+        "id": 0,
+        "name": "Willis Grimes"
+      },
+      {
+        "id": 1,
+        "name": "Meghan Graham"
+      },
+      {
+        "id": 2,
+        "name": "Kristina Wynn"
+      }
+    ],
+    "greeting": "Hello, Gillespie Haley! You have 7 unread messages.",
+    "favoriteFruit": "apple"
+  },
+  {
+    "_id": "66b3aee05c54f5365d255226",
+    "index": 3,
+    "guid": "0389ec90-fe9b-4073-b19c-30932d23d3da",
+    "isActive": false,
+    "balance": "$2,917.61",
+    "picture": "http://placehold.it/32x32",
+    "age": 37,
+    "eyeColor": "blue",
+    "name": "Compton Wilkerson",
+    "gender": "male",
+    "company": "UTARA",
+    "email": "comptonwilkerson@utara.com",
+    "phone": "+1 (951) 502-2396",
+    "address": "427 Caton Place, Allentown, North Carolina, 4359",
+    "about": "Incididunt aliqua anim reprehenderit ullamco sit commodo tempor. Eiusmod id duis amet id. Magna occaecat cillum adipisicing officia. Ex quis consequat cupidatat enim ullamco nostrud occaecat tempor et incididunt ex proident magna.\r\n",
+    "registered": "2024-05-08T08:32:04 +05:00",
+    "latitude": 67.048606,
+    "longitude": 55.480163,
+    "tags": [
+      "sunt",
+      "aliquip",
+      "occaecat",
+      "nulla",
+      "consequat",
+      "non",
+      "aliquip"
+    ],
+    "friends": [
+      {
+        "id": 0,
+        "name": "Sherrie Alvarez"
+      },
+      {
+        "id": 1,
+        "name": "Kitty Simon"
+      },
+      {
+        "id": 2,
+        "name": "Mclaughlin Russo"
+      }
+    ],
+    "greeting": "Hello, Compton Wilkerson! You have 3 unread messages.",
+    "favoriteFruit": "apple"
+  },
+  {
+    "_id": "66b3aee06c8c46831611f02e",
+    "index": 4,
+    "guid": "0829030b-fb9b-4a2d-a68b-101567ac09c6",
+    "isActive": false,
+    "balance": "$1,394.92",
+    "picture": "http://placehold.it/32x32",
+    "age": 22,
+    "eyeColor": "brown",
+    "name": "Mona Cox",
+    "gender": "female",
+    "company": "ROUGHIES",
+    "email": "monacox@roughies.com",
+    "phone": "+1 (968) 489-3728",
+    "address": "568 Lee Avenue, Venice, New Mexico, 9463",
+    "about": "Voluptate dolor ad cupidatat magna laboris. Dolore aliquip sunt ipsum ad mollit fugiat non nisi minim sunt nisi consectetur voluptate fugiat. Ad reprehenderit cillum sit consectetur ullamco eu fugiat ex. Ut deserunt dolore sint commodo dolore minim aute occaecat sit fugiat commodo veniam. Enim ex labore consectetur non adipisicing officia adipisicing anim nisi aliquip. Aliqua occaecat aute nulla aute.\r\n",
+    "registered": "2022-07-24T09:13:23 +05:00",
+    "latitude": 40.833659,
+    "longitude": 15.126456,
+    "tags": [
+      "fugiat",
+      "elit",
+      "incididunt",
+      "labore",
+      "nulla",
+      "commodo",
+      "nostrud"
+    ],
+    "friends": [
+      {
+        "id": 0,
+        "name": "Amalia Lynn"
+      },
+      {
+        "id": 1,
+        "name": "Mays Key"
+      },
+      {
+        "id": 2,
+        "name": "Berg Norris"
+      }
+    ],
+    "greeting": "Hello, Mona Cox! You have 3 unread messages.",
+    "favoriteFruit": "strawberry"
+  }
+]
