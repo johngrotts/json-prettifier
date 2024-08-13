@@ -30,5 +30,17 @@
       7,
       8
     ]
+  ],
+  "arrayOfObjects1": [
+    {
+      "arrObj2": {
+        "aO3": "Array of Objects 3 Param 1"
+      }
+    },
+    {
+      "arrObj2": {
+        "aO3": "Array of Objects 3 Param 2"
+      }
+    }
   ]
 }

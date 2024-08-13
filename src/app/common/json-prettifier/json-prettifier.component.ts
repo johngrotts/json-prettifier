@@ -20,6 +20,6 @@ export class JsonPrettifierComponent {
     const randomJson = require('../../json-prettify/test-data/random-json-data.json');
     const complexJson = require('../../json-prettify/test-data/complex-json-data.json');
     const j = JSON.parse(JsonObjectTestData.EMPTY_ARRAY);
-    this.jsonStr = JsonParserService.prettifyJson(randomJson, pp);
+    this.jsonStr = JsonParserService.parseAndPrettifyJson(randomJson, pp);
   }
 }

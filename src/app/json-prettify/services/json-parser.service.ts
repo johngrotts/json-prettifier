@@ -32,7 +32,7 @@ export class JsonParserService {
       pp.lineBreak = `<br />\n`;
     }
     const endChar = jsonType === 'OBJECT' ? '}' : ']';
-    const beginChar = jsonType === 'ARRAY' ? `${this.addCharWithBreak('[', pp)}` : '';
+    const beginChar = jsonType === 'ARRAY' ? `${this.addCharBreak('[', pp)}` : '';
     display = `${beginChar}${this.createJsonString(j, 0, pp, jsonType === 'ARRAY')}${endChar}`;
     return display;
   }
@@ -50,29 +50,29 @@ export class JsonParserService {
         if(t === 'ARRAY') {
           console.log('ARRAY OF ARRAYS', j, json[j], insideArray, Object.entries(json[j]).length);
           if(insideArray) {
-            value = `${value}${this.addLeadSpaces(currentIndent + 1, pp)}[`;
+            value = `${value}${this.createLeadSpaces(currentIndent + 1, pp)}[`;
           } else {
-            key = `${key}${this.addLeadSpaces(currentIndent + 1, pp)}${this.createKey(j)}`;
-            value = `${value}${this.addCharWithBreak('[', pp)}`;
+            key = `${key}${this.createLeadSpaces(currentIndent + 1, pp)}${this.createKey(j)}`;
+            value = `${value}${this.addCharBreak('[', pp)}`;
           }
 
           value = `${value}${this.createJsonString(json[j], currentIndent + 1, pp, true)}`;
 
           const isLast0 = index0 + 1 === Object.entries(json).length;
-          value = `${value}${this.addLeadSpaces(currentIndent + 1, pp)}${this.addCharCommaBreak(']', pp, isLast0)}`;
+          value = `${value}${this.createLeadSpaces(currentIndent + 1, pp)}${this.addCharCommaBreak(']', pp, isLast0)}`;
           display = `${display}${key}${value}`;
 
 
         } else if(t === 'OBJECT') {
           console.log('ARRAY OF OBJECTS', j, json[j], insideArray);
-          key = `${key}${this.addLeadSpaces(currentIndent + 1, pp)}${this.createKey(j)}`;
-          value = `${value}${this.addCharWithBreak('[', pp)}`;
+          key = `${key}${this.createLeadSpaces(currentIndent + 1, pp)}${this.createKey(j)}`;
+          value = `${value}${this.addCharBreak('[', pp)}`;
 
           json[j].forEach((k: any, index1: number) => {
-            value = `${value}${this.addLeadSpaces(currentIndent + 2, pp)}${this.addCharWithBreak('{', pp)}`;
+            value = `${value}${this.createLeadSpaces(currentIndent + 2, pp)}${this.addCharBreak('{', pp)}`;
 
             Object.keys(k).forEach((l: any, index2: number) => {
-              const subKey = `${this.addLeadSpaces(currentIndent + 3, pp)}${this.createKey(l)}`;
+              const subKey = `${this.createLeadSpaces(currentIndent + 3, pp)}${this.createKey(l)}`;
               let subValue = '';
               if(this.isObject(k[l]) && this.isArray(k[l])) {
                 console.log('----- Recursive Array Call -----');
@@ -86,37 +86,37 @@ export class JsonParserService {
             });
 
             const isLast1 = index1 + 1 === Object.entries(json[j]).length;
-            value = `${value}${this.addLeadSpaces(currentIndent + 2, pp)}${this.addCharCommaBreak('}', pp, isLast1)}`;
+            value = `${value}${this.createLeadSpaces(currentIndent + 2, pp)}${this.addCharCommaBreak('}', pp, isLast1)}`;
           });
 
           const isLast0 = index0 + 1 === Object.entries(json).length;
-          value = `${value}${this.addLeadSpaces(currentIndent + 1, pp)}${this.addCharCommaBreak(']', pp, isLast0)}`;
+          value = `${value}${this.createLeadSpaces(currentIndent + 1, pp)}${this.addCharCommaBreak(']', pp, isLast0)}`;
           display = `${display}${key}${value}`;
 
 
         } else if(t === 'BASIC') {
           console.log('ARRAY OF BASIC VALUES', j, json[j], insideArray);
           if(!insideArray) {
-            key = `${key}${this.addLeadSpaces(currentIndent + 1, pp)}${this.createKey(j)}`;
-            value = `${value}${this.addCharWithBreak('[', pp)}`;
+            key = `${key}${this.createLeadSpaces(currentIndent + 1, pp)}${this.createKey(j)}`;
+            value = `${value}${this.addCharBreak('[', pp)}`;
           } else {
-          value = `${value}${this.addLeadSpaces(currentIndent + 1, pp)}${this.addCharWithBreak('[', pp)}`;
+          value = `${value}${this.createLeadSpaces(currentIndent + 1, pp)}${this.addCharBreak('[', pp)}`;
           }
 
           json[j].forEach((k: any, index1: number) => {
             let val = '';
             if(k === null || this.isNumber(k) || this.isBoolean(k)) {
-              val = `${this.addLeadSpaces(currentIndent + 2, pp)}${k}`;
+              val = `${this.createLeadSpaces(currentIndent + 2, pp)}${k}`;
             } else if(this.isString(k)) {
-              val = `${this.addLeadSpaces(currentIndent + 2, pp)}"${k}"`;
+              val = `${this.createLeadSpaces(currentIndent + 2, pp)}"${k}"`;
             }
             const isLast1 = index1 + 1 === Object.entries(json[j]).length;
             value = `${value}${val}`;
-            value = `${this.addCommaToLineUnlessLast(value, isLast1)}${pp.lineBreak}`;
+            value = `${value}${this.addCommaUnlessLast(isLast1)}${pp.lineBreak}`;
           });
 
           const isLast0 = index0 + 1 === Object.entries(json).length;
-          value = `${value}${this.addLeadSpaces(currentIndent + 1, pp)}${this.addCharCommaBreak(']', pp, isLast0)}`;
+          value = `${value}${this.createLeadSpaces(currentIndent + 1, pp)}${this.addCharCommaBreak(']', pp, isLast0)}`;
           display = `${display}${key}${value}`;
         }
 
@@ -124,20 +124,20 @@ export class JsonParserService {
       } else if (json[j] !== null && this.isObject(json[j])) {
         console.log('OBJECT', j, json[j], insideArray);
         if(!insideArray) {
-          key = `${this.addLeadSpaces(currentIndent + 1, pp)}${this.createKey(j)}`;
+          key = `${this.createLeadSpaces(currentIndent + 1, pp)}${this.createKey(j)}`;
         }
         display = `${display}${key}${this.createJsonString(json[j], currentIndent + 1, pp)}`;
         const isLast0 = index0 + 1 === Object.entries(json).length;
-        display = `${display}${this.addLeadSpaces(currentIndent + 1, pp)}}${this.addCommaToLineUnlessLast(value, isLast0)}${pp.lineBreak}`;
+        display = `${display}${this.createLeadSpaces(currentIndent + 1, pp)}}${value}${this.addCommaUnlessLast(isLast0)}${pp.lineBreak}`;
 
 
       } else if(json[j] === null || this.isNumber(json[j]) || this.isBoolean(json[j]) || this.isString(json[j])) {
         console.log('BASIC VALUE', j, json[j], insideArray, 'IS THIS TRUE:', index0 === 0);
         // TODO: Move this line to somewhere else. It is causing later objects to have extra spaces between key and {
-        key = index0 === 0 ? `${this.addLeadSpaces(currentIndent, pp)}${this.addCharWithBreak('{', pp)}` : '';
-        key = `${key}${this.addLeadSpaces(currentIndent + 1, pp)}${this.createKey(j)}`;
+        key = index0 === 0 ? `${this.createLeadSpaces(currentIndent, pp)}${this.addCharBreak('{', pp)}` : '';
+        key = `${key}${this.createLeadSpaces(currentIndent + 1, pp)}${this.createKey(j)}`;
         const isLast0 = index0 + 1 === Object.entries(json).length;
-        value = `${this.createBasicValue(json[j])}${this.addCommaToLineUnlessLast('', isLast0)}${pp.lineBreak}`;
+        value = `${this.createBasicValue(json[j])}${this.addCommaUnlessLast(isLast0)}${pp.lineBreak}`;
         display = `${display}${key}${value}`;
 
 
@@ -157,46 +157,103 @@ export class JsonParserService {
     return true;
   }
 
-
-
-
-  protected static addCharWithBreak(char: string, pp: PrettifiedJsonParams): string {
-    return `${char}${pp.lineBreak}`;
+  public static parseAndPrettifyJson(json: JSON, pp: PrettifiedJsonParams): string {
+    
+    let display = '';
+    const j = json as any;
+    if(!this.isValidJson(JSON.stringify(json))) {
+      return `{ "error": true, "message": "The JSON you submitted is invalid" }`;
+    }
+    let jsonType = '';
+    if(JSON.stringify(json).trim().startsWith('[')) {
+      jsonType = 'ARRAY';
+    } else if(JSON.stringify(json).trim().startsWith('{')) {
+      jsonType = 'OBJECT';
+    } else {
+      return `{ "error": true, "message": "The JSON you submitted is invalid" }`;
+    }
+    console.log('JSON TYPE: ', jsonType)
+    if(pp.lineBreak === null || pp.lineBreak === undefined) {
+      pp.lineBreak = `\n`;
+    }
+    if(pp.forHtml) {
+      pp.lineBreak = `<br />\n`;
+    }
+    const endChar = jsonType === 'OBJECT' ? '}' : ']';
+    const beginChar = jsonType === 'ARRAY' ? `${this.addCharBreak('[', pp)}` : `${this.addCharBreak('{', pp)}`;
+    display = `${beginChar}${this.parseAndPrettify(j, 1, pp, false, jsonType === 'ARRAY')}${endChar}`;
+    return display;
   }
 
-  protected static addCharCommaBreak(char: string, pp: PrettifiedJsonParams, isLast: boolean): string {
-    return isLast ? `${char}${pp.lineBreak}` : `${char},${pp.lineBreak}`;
-  }
 
-  protected static typeOfArray(arr: any[]): string {
-    for(const a of arr) {
-      if(this.isArray(a)) {
-        return 'ARRAY';
-      } else if(this.isObject(a)) {
-        return 'OBJECT';
-      } else if(this.isNumber(a) || this.isBoolean(a) || this.isString(a)) {
-        return 'BASIC';
+
+  protected static parseAndPrettify(json: any, currentIndent: number,  pp: PrettifiedJsonParams, isLast: boolean, insideArray: boolean): string {
+    let display = '';
+
+    console.log('JSON: ', json, Object.keys(json), insideArray)
+    Object.keys(json).forEach((j: any, index0: number) => {
+      const isLast0 = index0 + 1 === Object.entries(json).length;
+      // ARRAY
+      if(json[j] !== null && this.isObject(json[j]) && this.isArray(json[j])) {
+        console.log('ARRAY', json[j], insideArray);
+        display = `${display}${this.createArray(json[j], j, currentIndent, pp, isLast0, insideArray)}`;
+
+      // OBJECT
+      } else if(json[j] !== null && this.isObject(json[j])) {
+        console.log('OBJECT', json[j], insideArray);
+        display = `${display}${this.createObject(json[j], j, currentIndent, pp, isLast0, insideArray)}`;
+  
+      // BASIC VALUE
+      } else if(json[j] === null || this.isNumber(json[j]) || this.isBoolean(json[j]) || this.isString(json[j])) {
+        console.log('BASIC VALUE', json[j], insideArray);
+        const key = insideArray ? '' : `${this.createKey(j)}`;
+        const value = `${this.createBasicValue(json[j])}${this.addCommaUnlessLast(isLast0)}${pp.lineBreak}`;
+        display = `${display}${this.createLeadSpaces(currentIndent, pp)}${key}${value}`;
+  
       } else {
-        console.log('--- ERROR: Unable to determine array ---', arr);
+        console.log('--- ERROR: Unable to determine what this is ---', j)
       }
-    }
-    return '';
+      // console.log('DISPLAY: ', display);
+    });
+
+    
+    return display;
   }
 
-  protected static addLeadSpaces(spacesToAdd: number, pp: PrettifiedJsonParams): string {
-    let spaceChar = pp.forHtml ? '\u00A0' : ' ';
-    let spaces = '';
-    if(spacesToAdd <= 0) {
-      return spaces;
+  protected static createArray(json: any, jKey: string, currentIndent: number, pp: PrettifiedJsonParams, isLast: boolean, insideArray: boolean): string {
+    console.log('ARRAY TIME: ', json, jKey);
+    // Var Setup
+    let key = '';
+    let value = '';
+    let close = `${this.createLeadSpaces(currentIndent, pp)}]${this.addCommaUnlessLast(isLast)}${pp.lineBreak}`;
+
+    // If this is inside an array, a key will not be created
+    if(insideArray) {
+      key = `${this.createLeadSpaces(currentIndent, pp)}${this.addCharBreak('[', pp)}`
+    } else {
+      key = `${this.createLeadSpaces(currentIndent, pp)}${this.createKey(jKey)}${this.addCharBreak('[', pp)}`;
     }
-    let multiplier = 1;
-    if(pp.spacesMultiplier && pp.spacesMultiplier > 0) {
-      multiplier = pp.spacesMultiplier;
+    value = this.parseAndPrettify(json, currentIndent + 1, pp, isLast, true);
+    
+    return `${key}${value}${close}`;
+  }
+
+  protected static createObject(json: any, jKey: string, currentIndent: number, pp: PrettifiedJsonParams, isLast: boolean, insideArray: boolean): string {
+    console.log('OBJECT TIME: ', json, jKey);
+    // Var Setup
+    let key = '';
+    let value = '';
+    let close = `${this.createLeadSpaces(currentIndent, pp)}}${this.addCommaUnlessLast(isLast)}${pp.lineBreak}`;
+
+    // May (normal object) or may not (directly in array) have a key 
+    if(insideArray) {
+      key = `${this.createLeadSpaces(currentIndent, pp)}${this.addCharBreak('{', pp)}`
+    } else {
+      key = `${this.createLeadSpaces(currentIndent, pp)}${this.createKey(jKey)}${this.addCharBreak('{', pp)}`;
     }
-    for(let i = 0; i < spacesToAdd * multiplier; i++) {
-      spaces = `${spaces}${spaceChar}`;
-    }
-    return spaces;
+    value = this.parseAndPrettify(json, currentIndent + 1, pp, isLast, false);
+    
+    return `${key}${value}${close}`;
   }
 
   protected static createKey(keyName: string): string {
@@ -217,8 +274,49 @@ export class JsonParserService {
     return val;
   }
 
-  protected static addCommaToLineUnlessLast(str: string, isLast: boolean): string {
-    return isLast? str : `${str},`;
+  protected static addCharBreak(char: string, pp: PrettifiedJsonParams): string {
+    return `${char}${pp.lineBreak}`;
+  }
+
+  protected static addCharCommaBreak(char: string, pp: PrettifiedJsonParams, isLast: boolean): string {
+    return isLast ? `${char}${pp.lineBreak}` : `${char},${pp.lineBreak}`;
+  }
+
+  protected static createLeadSpaces(spacesToAdd: number, pp: PrettifiedJsonParams): string {
+    let spaceChar = pp.forHtml ? '\u00A0' : ' ';
+    let spaces = '';
+    if(spacesToAdd <= 0) {
+      return spaces;
+    }
+    let multiplier = 1;
+    if(pp.spacesMultiplier && pp.spacesMultiplier > 0) {
+      multiplier = pp.spacesMultiplier;
+    }
+    for(let i = 0; i < spacesToAdd * multiplier; i++) {
+      spaces = `${spaces}${spaceChar}`;
+    }
+    return spaces;
+  }
+
+  protected static addCommaUnlessLast(isLast: boolean): string {
+    return isLast? '' : `,`;
+  }
+
+
+
+  protected static typeOfArray(arr: any[]): string {
+    for(const a of arr) {
+      if(this.isArray(a)) {
+        return 'ARRAY';
+      } else if(this.isObject(a)) {
+        return 'OBJECT';
+      } else if(this.isNumber(a) || this.isBoolean(a) || this.isString(a)) {
+        return 'BASIC';
+      } else {
+        console.log('--- ERROR: Unable to determine array ---', arr);
+      }
+    }
+    return '';
   }
 
   protected static isObject(obj: any): boolean {
