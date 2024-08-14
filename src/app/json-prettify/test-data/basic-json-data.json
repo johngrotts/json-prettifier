@@ -1,0 +1,20 @@
+{
+  "string1": "String 1",
+  "boolean1": true,
+  "null1": null,
+  "array1": [
+    "arrayString1",
+    "arrayString2",
+    "arrayString3"
+  ],
+  "subObject1": {
+    "string2": "String 2",
+    "boolean2": false,
+    "null2": null,
+    "array2": [
+      1,
+      2,
+      3
+    ]
+  }
+}

@@ -1,4 +1,4 @@
-export class JsonObjectTestData {
+export class BasicJsonObjectTestData {
     public static EMPTY_OBJECT = '{}';
     public static EMPTY_ARRAY = '[]';
     public static STRING_X_STRING = '{ "name1" : "value1" }';
@@ -21,6 +21,5 @@ export class JsonObjectTestData {
     public static STRING_X_EMPTY_OBJ = '{ "name1" : {} }';
     public static STRING_X_EMPTY_ARRAY = '{ "name1" : [] }';
 
-    
-    public static OBJ_2_STRING_EMPTY = '{ "name1" : {}, "name2" : [] }';
+    public static INVALID_JSON = '{ "string1": "Bad Format", [] }';
 }

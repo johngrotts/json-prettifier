@@ -51,22 +51,22 @@ export class JsonParserService {
   protected static parseAndPrettify(json: any, currentIndent: number,  pp: PrettifiedJsonParams, isLast: boolean, insideArray: boolean): string {
     let display = '';
 
-    console.log('JSON: ', json, Object.keys(json), insideArray)
+    // console.log('JSON: ', json, Object.keys(json), insideArray)
     Object.keys(json).forEach((j: any, index0: number) => {
       const isLast0 = index0 + 1 === Object.entries(json).length;
       // ARRAY
       if(json[j] !== null && this.isObject(json[j]) && this.isArray(json[j])) {
-        console.log('ARRAY', json[j], insideArray);
+        // console.log('ARRAY', json[j], insideArray);
         display = `${display}${this.createArray(json[j], j, currentIndent, pp, isLast0, insideArray)}`;
 
       // OBJECT
       } else if(json[j] !== null && this.isObject(json[j])) {
-        console.log('OBJECT', json[j], insideArray);
+        // console.log('OBJECT', json[j], insideArray);
         display = `${display}${this.createObject(json[j], j, currentIndent, pp, isLast0, insideArray)}`;
   
       // BASIC VALUE
       } else if(json[j] === null || this.isNumber(json[j]) || this.isBoolean(json[j]) || this.isString(json[j])) {
-        console.log('BASIC VALUE', json[j], insideArray);
+        // console.log('BASIC VALUE', json[j], insideArray);
         const key = insideArray ? '' : `${this.createKey(j)}`;
         const value = `${this.createBasicValue(json[j])}${this.addCommaUnlessLast(isLast0)}${pp.lineBreak}`;
         display = `${display}${this.createLeadSpaces(currentIndent, pp)}${key}${value}`;
@@ -127,6 +127,11 @@ export class JsonParserService {
     } else if(this.isString(value)) {
       value = (value as string).replaceAll('\\', '\\\\');
       value = (value as string).replaceAll('"', '\\"');
+      value = (value as string).replaceAll('\r', '\\r');
+      value = (value as string).replaceAll('\n', '\\n');
+      value = (value as string).replaceAll('\t', '\\t');
+      value = (value as string).replaceAll('\f', '\\f');
+      value = (value as string).replaceAll('\b', '\\b');
       val = `"${value}"`;
     } else {
       console.log('--- ERROR: Unable to determine type of value ---', value);
@@ -162,22 +167,6 @@ export class JsonParserService {
     return isLast? '' : `,`;
   }
 
-
-
-  protected static typeOfArray(arr: any[]): string {
-    for(const a of arr) {
-      if(this.isArray(a)) {
-        return 'ARRAY';
-      } else if(this.isObject(a)) {
-        return 'OBJECT';
-      } else if(this.isNumber(a) || this.isBoolean(a) || this.isString(a)) {
-        return 'BASIC';
-      } else {
-        console.log('--- ERROR: Unable to determine array ---', arr);
-      }
-    }
-    return '';
-  }
 
   protected static isObject(obj: any): boolean {
     return typeof obj === 'object';
